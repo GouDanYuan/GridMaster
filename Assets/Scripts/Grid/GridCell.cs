@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridCell : MonoBehaviour
@@ -10,7 +11,6 @@ public class GridCell : MonoBehaviour
     private Transform m_progress;
     private SpriteRenderer m_progressSR;
     private Tween m_progressTween;
-    public PlayerController m_settledPlayer;
     public PlayerController m_currentPlayer;
 
     private void Awake()
@@ -34,13 +34,13 @@ public class GridCell : MonoBehaviour
             {
                 SetColor(playerController.PlayerColor);
                 m_currentPlayer = playerController;
-                SetProgressAnim(1);
+                SetProgress(1);
             }
             else
             {
-                SetColor(GetDefaultColor());
-                SetProgress(0);
                 m_currentPlayer = null;
+                SetColor(m_defaultColor);
+                SetProgress(0);
             }
         }
     }
@@ -64,10 +64,8 @@ public class GridCell : MonoBehaviour
         m_progressTween = m_progress.transform.DOScale(targetScale, 3);
         m_progressTween.OnComplete(() =>
         {
-            if (m_currentPlayer != null)
-            {
-                m_settledPlayer = m_currentPlayer;
-            }
+            m_currentPlayer = null;
+            SetColor(m_defaultColor);
         });
     }
 
@@ -82,16 +80,17 @@ public class GridCell : MonoBehaviour
             }
             if (m_playerSets.Count == 1)
             {
+                var playerControllerInGrid = m_playerSets.First();
+                SetColor(playerControllerInGrid.PlayerColor);
+                m_currentPlayer = playerControllerInGrid;
+                SetProgress(1);
+            }
+            else if (m_playerSets.Count == 0)
+            {
                 SetColor(playerController.PlayerColor);
                 m_currentPlayer = playerController;
-                SetProgress(0);
-                SetProgressAnim(1);
-            }
-            else
-            {
-                SetColor(GetDefaultColor());
-                SetProgress(0);
-                m_currentPlayer = null;
+                SetProgress(1);
+                SetProgressAnim(0);
             }
         }
     }
@@ -102,21 +101,24 @@ public class GridCell : MonoBehaviour
         m_progressSR.color = color * 0.8f;
     }
 
-    private Color GetDefaultColor()
+    public PlayerController GetCurrentPlayerController()
     {
-        if (m_settledPlayer)
-        {
-            return m_settledPlayer.PlayerColor;
-        }
-        return m_defaultColor;
+        return m_currentPlayer;
     }
 
     public void Reset()
     {
-        m_settledPlayer = null;
         m_currentPlayer = null;
         m_playerSets.Clear();
         SetColor(m_defaultColor);
         SetProgress(0);
+    }
+
+    private void OnDestroy()
+    {
+        if (m_progressTween != null)
+        {
+            m_progressTween.Kill();
+        }
     }
 }
