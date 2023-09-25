@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public PlayerEnum PlayerEnum = PlayerEnum.P1;
-    public float Speed = 4.0f;
     public Color PlayerColor;
+    public PlayerData PlayerData;
 
     private InputActionAsset m_inputAction;
     private InputAction m_MoveAction;
@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
             m_Animator.SetTrigger("Attack");
         };
 
+        PlayerSO playerSO = Resources.Load("PlayerSO") as PlayerSO;
+        PlayerData = playerSO.InitData;
+
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponentInChildren<Animator>();
         PlayerColor = transform.GetComponent<SpriteRenderer>().color * Color.gray;
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour
         if (move != Vector2.zero)
         {
             SetLookDirectionFrom(move);
-            var movement = move * Speed;
+            var movement = move * PlayerData.Speed;
             var speed = movement.sqrMagnitude;
             var angle = Mathf.Atan2(move.y, move.x) * Mathf.Rad2Deg - 90;
             m_Rigidbody.MoveRotation(angle);

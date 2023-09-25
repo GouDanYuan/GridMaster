@@ -22,17 +22,17 @@ public class GameUI : MonoBehaviour
         m_Continue = transform.Find("Continue").GetComponent<Button>();
         m_TimeTmp = transform.Find("Time").GetComponent<TextMeshProUGUI>();
         m_StartTmp = m_StartBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-
         m_StartBtn.onClick.AddListener(OnStartBtnClick);
         m_Continue.onClick.AddListener(OnContinueBtnClick);
 
         m_Continue.gameObject.SetActive(false);
         m_StartBtn.gameObject.SetActive(true);
 
-        PlayerController p1 = GameObject.Find("P1").GetComponent<PlayerController>();
-        m_playerControllers.Add(p1);
-        PlayerController p2 = GameObject.Find("P2").GetComponent<PlayerController>();
-        m_playerControllers.Add(p2);
+        foreach (PlayerEnum playerEnum in Enum.GetValues(typeof(PlayerEnum)))
+        {
+            PlayerController pCtrl = GameObject.Find(playerEnum.ToString()).GetComponent<PlayerController>();
+            m_playerControllers.Add(pCtrl);
+        }
         Reset();
     }
 
