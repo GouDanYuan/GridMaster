@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    public int GAME_MAXTIME = 10;
+
     private Button m_StartBtn;
     private Button m_Continue;
     private TextMeshProUGUI m_TimeTmp;
@@ -14,7 +17,7 @@ public class GameUI : MonoBehaviour
     private float m_startTime;
     private int m_deltaTime;
     private List<PlayerController> m_playerControllers = new List<PlayerController>();
-    public int GAME_MAXTIME = 10;
+    private List<UIPlayerInfo> m_uiPlayerInfos;
 
     private void Start()
     {
@@ -32,6 +35,22 @@ public class GameUI : MonoBehaviour
         {
             PlayerController pCtrl = GameObject.Find(playerEnum.ToString()).GetComponent<PlayerController>();
             m_playerControllers.Add(pCtrl);
+        }
+
+        GameObject playerInfoGo = transform.Find("PlayerInfo/Info").gameObject;
+        for (int i = 0; i < m_playerControllers.Count; i++)
+        {
+            UIPlayerInfo uIPlayerInfo;
+            if (i == 0)
+            {
+                uIPlayerInfo = playerInfoGo.GetComponent<UIPlayerInfo>();
+            }
+            else
+            {
+                uIPlayerInfo = Instantiate(playerInfoGo, playerInfoGo.transform.parent).GetComponent<UIPlayerInfo>();
+            }
+            uIPlayerInfo.SetPlayerController(m_playerControllers[i]);
+            uIPlayerInfo.Refresh();
         }
         Reset();
     }

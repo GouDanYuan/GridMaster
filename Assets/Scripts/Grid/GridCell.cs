@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GridCell : MonoBehaviour
 {
-    private HashSet<PlayerController> m_playerSets = new HashSet<PlayerController>();
     private SpriteRenderer m_spriteRenderer;
     private Color m_defaultColor;
     private Transform m_progress;
@@ -26,22 +25,10 @@ public class GridCell : MonoBehaviour
         var playerController = collision.GetComponent<PlayerController>();
         if (playerController != null)
         {
-            if (!m_playerSets.Contains(playerController))
-            {
-                m_playerSets.Add(playerController);
-            }
-            if (m_playerSets.Count == 1)
-            {
-                SetColor(playerController.PlayerColor);
-                m_currentPlayer = playerController;
-                SetProgress(1);
-            }
-            else
-            {
-                m_currentPlayer = null;
-                SetColor(m_defaultColor);
-                SetProgress(0);
-            }
+            SetColor(playerController.PlayerColor);
+            m_currentPlayer = playerController;
+            SetProgress(1);
+            SetProgressAnim(0);
         }
     }
 
@@ -71,28 +58,6 @@ public class GridCell : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        var playerController = collision.GetComponent<PlayerController>();
-        if (playerController != null)
-        {
-            if (m_playerSets.Contains(playerController))
-            {
-                m_playerSets.Remove(playerController);
-            }
-            if (m_playerSets.Count == 1)
-            {
-                var playerControllerInGrid = m_playerSets.First();
-                SetColor(playerControllerInGrid.PlayerColor);
-                m_currentPlayer = playerControllerInGrid;
-                SetProgress(1);
-            }
-            else if (m_playerSets.Count == 0)
-            {
-                SetColor(playerController.PlayerColor);
-                m_currentPlayer = playerController;
-                SetProgress(1);
-                SetProgressAnim(0);
-            }
-        }
     }
 
     private void SetColor(Color color)
@@ -109,7 +74,6 @@ public class GridCell : MonoBehaviour
     public void Reset()
     {
         m_currentPlayer = null;
-        m_playerSets.Clear();
         SetColor(m_defaultColor);
         SetProgress(0);
     }

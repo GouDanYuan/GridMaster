@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
             m_Animator.SetTrigger("Attack");
         };
 
-        PlayerSO playerSO = Resources.Load("PlayerSO") as PlayerSO;
+        PlayerSO playerSO = Resources.Load("SO/PlayerSO") as PlayerSO;
         PlayerData = playerSO.InitData;
 
         m_Rigidbody = GetComponent<Rigidbody2D>();
