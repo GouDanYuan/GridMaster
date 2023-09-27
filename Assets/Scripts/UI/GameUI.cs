@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,10 +32,15 @@ public class GameUI : MonoBehaviour
 
         foreach (PlayerEnum playerEnum in Enum.GetValues(typeof(PlayerEnum)))
         {
-            PlayerController pCtrl = GameObject.Find(playerEnum.ToString()).GetComponent<PlayerController>();
-            m_playerControllers.Add(pCtrl);
+            GameObject pObj = GameObject.Find(playerEnum.ToString());
+            if (pObj != null)
+            {
+                PlayerController pCtrl = pObj.GetComponent<PlayerController>();
+                m_playerControllers.Add(pCtrl);
+            }
         }
 
+        // UI玩家信息显示
         GameObject playerInfoGo = transform.Find("PlayerInfo/Info").gameObject;
         for (int i = 0; i < m_playerControllers.Count; i++)
         {
@@ -55,6 +59,9 @@ public class GameUI : MonoBehaviour
         Reset();
     }
 
+    /// <summary>
+    /// 判定失败后 继续游戏
+    /// </summary>
     private void OnContinueBtnClick()
     {
         m_Continue.gameObject.SetActive(false);
@@ -65,6 +72,9 @@ public class GameUI : MonoBehaviour
         m_startTime = Time.realtimeSinceStartup;
     }
 
+    /// <summary>
+    /// 开始游戏
+    /// </summary>
     private void OnStartBtnClick()
     {
         m_StartBtn.gameObject.SetActive(false);
@@ -75,6 +85,9 @@ public class GameUI : MonoBehaviour
         m_startTime = Time.realtimeSinceStartup;
     }
 
+    /// <summary>
+    /// 重置所有
+    /// </summary>
     private void Reset()
     {
         m_StartBtn.gameObject.SetActive(true);
@@ -87,6 +100,9 @@ public class GameUI : MonoBehaviour
         m_startTime = float.MaxValue;
     }
 
+    /// <summary>
+    /// 重置所有玩家
+    /// </summary>
     private void ResetPlayer()
     {
         foreach (PlayerController player in m_playerControllers)
@@ -128,6 +144,10 @@ public class GameUI : MonoBehaviour
     }
 
     Dictionary<PlayerController, int> playerScore = new Dictionary<PlayerController, int>();
+    /// <summary>
+    /// 判定游戏是否结束
+    /// </summary>
+    /// <returns></returns>
     private PlayerController JudgeGameEnd()
     {
         playerScore.Clear();

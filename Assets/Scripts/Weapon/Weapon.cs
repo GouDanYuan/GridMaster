@@ -1,8 +1,17 @@
 using UnityEngine;
 
+/// <summary>
+/// 武器 攻击玩家判定 动画驱动
+/// </summary>
 public class Weapon : MonoBehaviour
 {
     private float m_hitTime;
+    private PlayerController m_playerController;
+
+    private void Start()
+    {
+        m_playerController = transform.parent.parent.GetComponent<PlayerController>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -15,6 +24,8 @@ public class Weapon : MonoBehaviour
             Vector2 moveDir = new Vector2(startPos.x, startPos.y);
             rigidbody2D.MovePosition(rigidbody2D.position + moveDir);
             m_hitTime = Time.realtimeSinceStartup;
+            var attackTarget = collider.GetComponent<PlayerController>();
+            m_playerController.AttackOther(attackTarget);
         }
     }
 }

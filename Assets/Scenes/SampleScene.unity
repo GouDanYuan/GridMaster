@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5464312d911ef04b89d64d29116fe08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GAME_MAXTIME: 10
+  GAME_MAXTIME: 50
 --- !u!114 &248431615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &250095984
 Animator:
   serializedVersion: 5
@@ -4728,8 +4728,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 89.11072, y: -9}
+  m_SizeDelta: {x: -521.9196, y: -770.1976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471210656
 MonoBehaviour:
