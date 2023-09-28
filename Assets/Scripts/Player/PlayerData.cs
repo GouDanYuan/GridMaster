@@ -59,4 +59,11 @@ public class PlayerData
     [Title("反弹次数")]
     [PropertyRange(0, 10)]
     public int BounceCount;
+
+    public override string ToString()
+    {
+        return $"Speed:{Speed} CoolTime:{CoolTime} ColliderScale:{ColliderScale}" +
+            $" FlashDistance:{FlashDistance} PushDistance:{PushDistance} PushTime:{PushTime} CaptureTime:{CaptureTime}" +
+            $"BounceCount:{BounceCount}";
+    }
 }

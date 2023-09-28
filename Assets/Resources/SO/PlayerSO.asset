@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e3102f2b8e28b41ace67fadf149f0f, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
-  InitData:
+  data:
     Speed: 4
     CoolTime: 3
     ColliderScale: 1
     FlashDistance: 1
-    PushDistance: 0.5
+    PushDistance: 1
     PushTime: 0.5
     CaptureTime: 3
     BounceCount: 0
