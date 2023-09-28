@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Power Rush",
+                    "type": "Button",
+                    "id": "e7577e01-651c-47eb-ae5b-b302980473bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -101,6 +110,17 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57e679d2-3e32-4566-b1a1-a371ae62666b",
+                    "path": "<Keyboard>/slash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Power Rush",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -121,6 +141,15 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "0a36f293-307a-4566-953b-701959a6b2c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Power Rush",
+                    "type": "Button",
+                    "id": "5b0ffe75-6b88-4d10-ad9b-bb907bd97790",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -191,6 +220,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10b8d4fa-b92f-4edf-b0a0-c5e6d0633575",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Power Rush",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

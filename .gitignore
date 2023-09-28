@@ -71,3 +71,7 @@ Assets/FR2_Cache.asset
 .vscode/launch.json
 Assets/Code/UI/Editor/ButtonEventTool/Asset/ElementAsset.asset.meta
 HybridCLRData
+ProjectSettings/ShaderGraphSettings.asset
+ProjectSettings/ProjectVersion.txt
+ProjectSettings/PackageManagerSettings.asset
+Packages/packages-lock.json

@@ -1442,7 +1442,7 @@ GameObject:
   - component: {fileID: 415161589}
   - component: {fileID: 415161590}
   - component: {fileID: 415161591}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2150,7 +2150,7 @@ GameObject:
   - component: {fileID: 676139204}
   - component: {fileID: 676139205}
   - component: {fileID: 676139206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2498,7 +2498,7 @@ GameObject:
   - component: {fileID: 807622317}
   - component: {fileID: 807622318}
   - component: {fileID: 807622319}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3628,7 +3628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1190801475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5297,6 +5297,7 @@ GameObject:
   - component: {fileID: 1664987710}
   - component: {fileID: 1664987709}
   - component: {fileID: 1664987708}
+  - component: {fileID: 1664987713}
   - component: {fileID: 1664987707}
   - component: {fileID: 1664987711}
   - component: {fileID: 1664987712}
@@ -5482,6 +5483,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1664987713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664987706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3590792ea7522694d85c285c2629e7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  chargeForce: 50
+  chargeCooldown: 0
+  isRush: 0
 --- !u!1 &1791669096
 GameObject:
   m_ObjectHideFlags: 0
@@ -5493,7 +5512,7 @@ GameObject:
   - component: {fileID: 1791669097}
   - component: {fileID: 1791669098}
   - component: {fileID: 1791669099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6100,6 +6119,7 @@ GameObject:
   - component: {fileID: 1900460243}
   - component: {fileID: 1900460242}
   - component: {fileID: 1900460241}
+  - component: {fileID: 1900460244}
   - component: {fileID: 1900460240}
   - component: {fileID: 1900460239}
   - component: {fileID: 1900460238}
@@ -6285,6 +6305,24 @@ Transform:
   - {fileID: 1596150606}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1900460244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900460237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3590792ea7522694d85c285c2629e7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  chargeForce: 50
+  chargeCooldown: 0
+  isRush: 0
 --- !u!1 &1980347958
 GameObject:
   m_ObjectHideFlags: 0

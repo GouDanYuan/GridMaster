@@ -16,8 +16,8 @@ MonoBehaviour:
     Speed: 4
     CoolTime: 3
     ColliderScale: 1
-    FlashDistance: 1
-    PushDistance: 1
+    FlashDistance: 2
+    PushDistance: 0.5
     PushTime: 0.5
     CaptureTime: 3
     BounceCount: 0

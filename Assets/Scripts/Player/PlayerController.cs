@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
     public PlayerEnum PlayerEnum = PlayerEnum.P1;
     public Color PlayerColor;
     public PlayerData PlayerData;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     /// 攻击input
     /// </summary>
     private InputAction m_AttackAction;
+    private InputAction m_RushAction;
     private Rigidbody2D m_Rigidbody;
     private Animator m_Animator;
     /// <summary>
@@ -26,16 +28,19 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private Vector3 m_startPosition;
     private Vector2 m_CurrentLookDirection;
+    private Vector2 move;
     /// <summary>
     /// 当前所在格子
     /// </summary>
     private GridCell m_currentGridCell;
+    private PlayerPowerRush m_powerRush;
 
     private void Awake()
     {
         m_inputAction = Resources.Load("InpuAction") as InputActionAsset;
         m_MoveAction = m_inputAction.FindAction($"{PlayerEnum}/Move");
         m_MoveAction.Enable();
+
         m_AttackAction = m_inputAction.FindAction($"{PlayerEnum}/Attack");
         m_AttackAction.Enable();
         m_AttackAction.performed += (context) =>
@@ -43,18 +48,27 @@ public class PlayerController : MonoBehaviour
             m_Animator.SetTrigger("Attack");
         };
 
+        m_RushAction = m_inputAction.FindAction($"{PlayerEnum}/Power Rush");
+        m_RushAction.Enable();
+        m_RushAction.performed += (context) =>
+        {
+            m_powerRush.StartCharging(move, m_CurrentLookDirection);
+        };
+
         PlayerSO playerSO = Resources.Load("SO/PlayerSO") as PlayerSO;
         PlayerData = playerSO.InitData;
 
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponentInChildren<Animator>();
+        m_powerRush = GetComponentInChildren<PlayerPowerRush>();
         PlayerColor = transform.GetComponent<SpriteRenderer>().color * Color.gray;
         m_startPosition = transform.position;
     }
 
     private void FixedUpdate()
     {
-        var move = m_MoveAction.ReadValue<Vector2>();
+        if (m_powerRush.isRush) return;
+        move = m_MoveAction.ReadValue<Vector2>();
 
         if (move != Vector2.zero)
         {
@@ -136,4 +150,5 @@ public class PlayerController : MonoBehaviour
         gameObject.SetActive(false);
         transform.position = m_startPosition;
     }
+
 }
