@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
     public int GAME_MAXTIME = 10;
-
+    public int p1Score;
+    public int p2Score;
     private Button m_StartBtn;
     private Button m_Continue;
     private TextMeshProUGUI m_TimeTmp;
     private TextMeshProUGUI m_StartTmp;
     private float m_startTime;
-    private int m_deltaTime;
+    public int m_deltaTime;
     private List<PlayerController> m_playerControllers = new List<PlayerController>();
     private List<UIPlayerInfo> m_uiPlayerInfos;
 
@@ -96,6 +98,9 @@ public class GameUI : MonoBehaviour
         {
             cell.Reset();
         }
+
+        p1Score = 0;
+        p2Score = 0;
         ResetPlayer();
         m_startTime = float.MaxValue;
     }
@@ -120,12 +125,13 @@ public class GameUI : MonoBehaviour
             m_TimeTmp.text = "";
             return;
         }
+        //var x = JudgeGameEnd();       //这也是查看实时分数用的，也不用管
         if (m_deltaTime > GAME_MAXTIME)
         {
             var winPCtrl = JudgeGameEnd();
-            if (winPCtrl != null)
+            if ((winPCtrl!=null)&&(winPCtrl.Count() == 1))  //先判断是否为空，不然会报错
             {
-                m_StartTmp.text = $"{winPCtrl.PlayerEnum} Win \nReset";
+                m_StartTmp.text = $"{winPCtrl.First().PlayerEnum} Win \nReset";
                 Reset();
             }
             else
@@ -134,6 +140,7 @@ public class GameUI : MonoBehaviour
                 {
                     player.Pause();
                 }
+                Reset();
                 m_Continue.gameObject.SetActive(true);
             }
         }
@@ -143,12 +150,12 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    Dictionary<PlayerController, int> playerScore = new Dictionary<PlayerController, int>();
+    public Dictionary<PlayerController, int> playerScore = new Dictionary<PlayerController, int>();
     /// <summary>
     /// 判定游戏是否结束
     /// </summary>
     /// <returns></returns>
-    private PlayerController JudgeGameEnd()
+    public IEnumerable<PlayerController> JudgeGameEnd()
     {
         playerScore.Clear();
         GridCell[] gridCells = GameObject.Find("Grid").GetComponentsInChildren<GridCell>();
@@ -162,12 +169,26 @@ public class GameUI : MonoBehaviour
                     playerScore.Add(pCtrl, 0);
                 }
                 playerScore[pCtrl]++;
+                //这两个if我查看分数用的，不用管
+                if (pCtrl.PlayerEnum == PlayerEnum.P1)
+                {
+                    p1Score = playerScore[pCtrl];
+                }
+
+                if (pCtrl.PlayerEnum == PlayerEnum.P2)
+                {
+                    p2Score = playerScore[pCtrl];
+                }
             }
         }
-        if (playerScore.Count == 1)
+       
+        if (playerScore.Count>=1)
         {
-            return playerScore.First().Key;
+            var maxScoreValue = playerScore.Values.Max();
+            var maxScorePlayerControllers = playerScore.Where(x => x.Value == maxScoreValue).Select(x => x.Key);
+            return maxScorePlayerControllers;
         }
         return null;
+        
     }
 }
