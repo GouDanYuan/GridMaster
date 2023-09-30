@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour
     /// 初始位置
     /// </summary>
     private Vector3 m_startPosition;
-    private Vector2 m_CurrentLookDirection;
-    private Vector2 move;
+    public Vector2 m_CurrentLookDirection;
+    public Vector2 move;
     /// <summary>
     /// 当前所在格子
     /// </summary>
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         m_RushAction.Enable();
         m_RushAction.performed += (context) =>
         {
-            m_powerRush.StartCharging(move, m_CurrentLookDirection);
+            m_powerRush.StartCharging(move,m_CurrentLookDirection);
         };
 
         PlayerSO playerSO = Resources.Load("SO/PlayerSO") as PlayerSO;
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_powerRush.isRush) return;
+        if (m_powerRush.currentMoveStatus != MoveStatus.Move) return;
         move = m_MoveAction.ReadValue<Vector2>();
 
         if (move != Vector2.zero)

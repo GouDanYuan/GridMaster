@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 47847257}
   - component: {fileID: 47847258}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 250095984}
   m_Layer: 0
   m_Name: P3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -722,6 +722,8 @@ MonoBehaviour:
     PushTime: 0
     CaptureTime: 0
     BounceCount: 0
+  m_CurrentLookDirection: {x: 0, y: 0}
+  move: {x: 0, y: 0}
 --- !u!212 &250095988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1166,7 +1168,7 @@ GameObject:
   - component: {fileID: 394620497}
   - component: {fileID: 394620499}
   - component: {fileID: 394620500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1444,7 +1446,7 @@ GameObject:
   - component: {fileID: 415161591}
   m_Layer: 6
   m_Name: Wall_4
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1887,7 +1889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 608259337}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2152,7 +2154,7 @@ GameObject:
   - component: {fileID: 676139206}
   m_Layer: 6
   m_Name: Wall_1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2500,7 +2502,7 @@ GameObject:
   - component: {fileID: 807622319}
   m_Layer: 6
   m_Name: Wall_2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4047,7 +4049,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1304441101}
   - component: {fileID: 1304441102}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5101,7 +5103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1596150606}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5301,9 +5303,9 @@ GameObject:
   - component: {fileID: 1664987707}
   - component: {fileID: 1664987711}
   - component: {fileID: 1664987712}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: P2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5358,6 +5360,8 @@ MonoBehaviour:
     PushTime: 0
     CaptureTime: 0
     BounceCount: 0
+  m_CurrentLookDirection: {x: 0, y: 0}
+  move: {x: 0, y: 0}
 --- !u!212 &1664987709
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5495,12 +5499,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3590792ea7522694d85c285c2629e7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  chargeForce: 50
+  currentMoveStatus: 0
+  chargeForce: 15
   chargeCooldown: 0
-  isRush: 0
 --- !u!1 &1791669096
 GameObject:
   m_ObjectHideFlags: 0
@@ -5514,7 +5521,7 @@ GameObject:
   - component: {fileID: 1791669099}
   m_Layer: 6
   m_Name: Wall_3
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5893,7 +5900,7 @@ GameObject:
   - component: {fileID: 1841368287}
   - component: {fileID: 1841368286}
   - component: {fileID: 1841368288}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6123,9 +6130,9 @@ GameObject:
   - component: {fileID: 1900460240}
   - component: {fileID: 1900460239}
   - component: {fileID: 1900460238}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: P1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6236,6 +6243,8 @@ MonoBehaviour:
     PushTime: 0
     CaptureTime: 0
     BounceCount: 0
+  m_CurrentLookDirection: {x: 0, y: 0}
+  move: {x: 0, y: 0}
 --- !u!212 &1900460242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6317,12 +6326,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3590792ea7522694d85c285c2629e7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  chargeForce: 50
+  currentMoveStatus: 0
+  chargeForce: 15
   chargeCooldown: 0
-  isRush: 0
 --- !u!1 &1980347958
 GameObject:
   m_ObjectHideFlags: 0

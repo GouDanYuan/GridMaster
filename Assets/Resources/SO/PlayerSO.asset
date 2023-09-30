@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     Speed: 4
-    CoolTime: 3
+    CoolTime: 1.02
     ColliderScale: 1
     FlashDistance: 2
-    PushDistance: 0.5
+    PushDistance: 3
     PushTime: 0.5
     CaptureTime: 3
-    BounceCount: 0
+    BounceCount: 1
