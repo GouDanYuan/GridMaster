@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        transform.localScale = new Vector3(PlayerData.ColliderScale, PlayerData.ColliderScale, PlayerData.ColliderScale);
         if (m_powerRush.currentMoveStatus != MoveStatus.Move) return;
         move = m_MoveAction.ReadValue<Vector2>();
 
@@ -147,6 +148,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Reset()
     {
+        PlayerData.Speed = 4f;
+        PlayerData.CoolTime = 3f;
+        PlayerData.ColliderScale = 1f;
+        PlayerData.FlashDistance = 2f;
+        PlayerData.PushDistance = 0.5f;
+        PlayerData.PushTime = 0.5f;
+        PlayerData.CaptureTime = 3f;
+        PlayerData.BounceCount = 0;
         gameObject.SetActive(false);
         transform.position = m_startPosition;
     }
