@@ -57,7 +57,7 @@ public class PlayerData
     /// 反弹次数
     /// </summary>
     [Title("反弹次数")]
-    [PropertyRange(0, 10)]
+    [PropertyRange(1, 10)]
     public int BounceCount;
 
     public override string ToString()

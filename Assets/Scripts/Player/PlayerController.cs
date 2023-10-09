@@ -152,10 +152,10 @@ public class PlayerController : MonoBehaviour
         PlayerData.CoolTime = 3f;
         PlayerData.ColliderScale = 1f;
         PlayerData.FlashDistance = 2f;
-        PlayerData.PushDistance = 0.5f;
+        PlayerData.PushDistance = 3f;
         PlayerData.PushTime = 0.5f;
         PlayerData.CaptureTime = 3f;
-        PlayerData.BounceCount = 0;
+        PlayerData.BounceCount = 1;
         gameObject.SetActive(false);
         transform.position = m_startPosition;
     }

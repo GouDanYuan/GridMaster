@@ -84,6 +84,8 @@ public class GameUI : MonoBehaviour
         {
             player.Resume();
         }
+        Debug.Log(Globals.BGM);
+        SoundManage.instance.PlayBGM(Globals.BGM);
         m_startTime = Time.realtimeSinceStartup;
     }
 
@@ -125,13 +127,14 @@ public class GameUI : MonoBehaviour
             m_TimeTmp.text = "";
             return;
         }
-        //var x = JudgeGameEnd();       //这也是查看实时分数用的，也不用管
+        var x = JudgeGameEnd();       //这也是查看实时分数用的，也不用管
         if (m_deltaTime > GAME_MAXTIME)
         {
             var winPCtrl = JudgeGameEnd();
             if ((winPCtrl!=null)&&(winPCtrl.Count() == 1))  //先判断是否为空，不然会报错
             {
                 m_StartTmp.text = $"{winPCtrl.First().PlayerEnum} Win \nReset";
+                SoundManage.instance.StopBGM();
                 Reset();
             }
             else

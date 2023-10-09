@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 638221961065426893
+  lastScan: 638322947025152856
   supportSerializedTypes:
   - TypeName: Game.CharacterShadowData, Assembly-CSharp
     IsCustom: 1
@@ -69,19 +69,4 @@ MonoBehaviour:
     Emit: 1
   - TypeName: UnityEngine.WrapMode, UnityEngine.CoreModule
     IsCustom: 1
-    Emit: 1
-  - TypeName: System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String,
-      mscorlib]], mscorlib
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-      mscorlib]], mscorlib
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.Collections.Generic.IEqualityComparer`1[[System.String, mscorlib]],
-      mscorlib
-    IsCustom: 0
-    Emit: 1
-  - TypeName: System.String, mscorlib
-    IsCustom: 0
     Emit: 1

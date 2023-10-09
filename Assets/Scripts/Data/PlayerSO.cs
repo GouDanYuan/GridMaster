@@ -32,6 +32,7 @@ public class PlayerSO : ScriptableObject
             {
                 if (item.Name == playerItem.Name)
                 {
+                    //Debug.Log(data);
                     playerItem.SetValue(playerData, item.GetValue(data));
                 }
             }

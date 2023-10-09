@@ -54,7 +54,7 @@ public class PlayerBuffManage:MonoBehaviour
         float buff = playerController.PlayerEnum == PlayerEnum ? p1Buff : p2Buff;
 
         bool buffProbability = (probability < buff) ? false : true;
-        Debug.Log(buffProbability);
+        //Debug.Log(buffProbability);
         if (timerBuff >=playerBuffTime)
         {
             if (buffProbability)
