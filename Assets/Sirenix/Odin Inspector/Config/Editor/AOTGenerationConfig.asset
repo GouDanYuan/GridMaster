@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 638322947025152856
+  lastScan: 638325501486708184
   supportSerializedTypes:
   - TypeName: Game.CharacterShadowData, Assembly-CSharp
     IsCustom: 1

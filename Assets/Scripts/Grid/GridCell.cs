@@ -13,6 +13,7 @@ public class GridCell : MonoBehaviour
     private HashSet<PlayerController> m_playerControllers = new HashSet<PlayerController>();
 
     public PlayerController m_currentPlayer;
+    //public PlayerData playerdata;
 
     private void Awake()
     {
@@ -20,6 +21,13 @@ public class GridCell : MonoBehaviour
         m_defaultColor = m_spriteRenderer.color;
         m_progress = transform.Find("Progress");
         m_progressSR = m_progress.GetComponent<SpriteRenderer>();
+        //playerdata = GetComponent<PlayerController>().PlayerData;
+        
+    }
+
+    void Start()
+    {
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,7 +52,7 @@ public class GridCell : MonoBehaviour
         SetColor(playerController.PlayerColor);
         m_currentPlayer = playerController;
         SetProgress(1);
-        SetProgressAnim(0);
+        SetProgressAnim(0,playerController);
         playerController.SetCurrentGridCell(this);
     }
 
@@ -65,14 +73,14 @@ public class GridCell : MonoBehaviour
     /// 设置格子当前的占领进度 有动画 动画结束后 格子设置为默认格子
     /// </summary>
     /// <param name="progress"></param>
-    private void SetProgressAnim(float progress)
+    private void SetProgressAnim(float progress,PlayerController playerController)
     {
         var targetScale = new Vector3(1, progress, 1);
         if (m_progressTween != null)
         {
             m_progressTween.Kill();
         }
-        m_progressTween = m_progress.transform.DOScale(targetScale, 3);
+        m_progressTween = m_progress.transform.DOScale(targetScale, playerController.PlayerData.CaptureTime);
         m_progressTween.OnComplete(() =>
         {
             m_currentPlayer = null;
